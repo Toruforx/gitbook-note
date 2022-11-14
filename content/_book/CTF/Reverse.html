@@ -271,6 +271,29 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="reverse">Reverse</h1>
+<h2 id="bugku">Bugku</h2>
+<h3 id="&#x5165;&#x95E8;&#x9006;&#x5411;">&#x5165;&#x95E8;&#x9006;&#x5411;</h3>
+<p>&#x9898;&#x76EE;&#x94FE;&#x63A5;&#xFF1A;<a href="https://ctf.bugku.com/challenges/detail/id/99.html" target="_blank">https://ctf.bugku.com/challenges/detail/id/99.html</a></p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x9644;&#x4EF6;&#x89E3;&#x538B;&#x662F;&#x4E00;&#x4E2A;exe&#xFF0C;&#x5148;&#x653E;exeinfope&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x8131;&#x58F3;&#x548C;&#x4F4D;&#x6570;&#xFF0C;&#x518D;&#x9009;&#x5BF9;&#x5E94;ida&#x627E;main&#x51FD;&#x6570;&#x627E;flag&#x3002;</p>
+<ol>
+<li><p>exeinfope&#x663E;&#x793A;&#x6587;&#x4EF6;&#x65E0;&#x58F3;&#xFF0C;&#x662F;32&#x4F4D;&#x7A0B;&#x5E8F;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x4F7F;&#x7528;ida32&#x4F4D;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<p><img src="C:\Users\35947\AppData\Roaming\Typora\typora-user-images\image-20221114134210345.png" alt="image-20221114134210345"></p>
+</li>
+<li><p>ida&#x5B9A;&#x4F4D;main&#x51FD;&#x6570;&#xFF0C;&#x53D1;&#x73B0;&#x6709;&#x4E00;&#x4E32;mov&#x6307;&#x4EE4;&#xFF0C;&#x731C;&#x6D4B;&#x53EF;&#x4EE5;&#x5C06;&#x540E;&#x9762;&#x7684;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x6570;&#x8F6C;&#x4E3A;&#x5B57;&#x7B26;&#x7EC4;&#x6210;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p><img src="C:\Users\35947\AppData\Roaming\Typora\typora-user-images\image-20221114134446187.png" alt="image-20221114134446187"></p>
+</li>
+<li><p>&#x5199;python&#x811A;&#x672C;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#xFF08;&#x5F53;&#x7136;ida&#x76F4;&#x63A5;R&#x4E5F;&#x884C;</p>
+<pre><code class="lang-python">a=[<span class="hljs-string">&apos;66&apos;</span>,<span class="hljs-string">&apos;6C&apos;</span>,<span class="hljs-string">&apos;61&apos;</span>,<span class="hljs-string">&apos;67&apos;</span>,<span class="hljs-string">&apos;7B&apos;</span>,<span class="hljs-string">&apos;52&apos;</span>,<span class="hljs-string">&apos;65&apos;</span>,<span class="hljs-string">&apos;5F&apos;</span>,<span class="hljs-string">&apos;31&apos;</span>,<span class="hljs-string">&apos;73&apos;</span>,<span class="hljs-string">&apos;5F&apos;</span>,<span class="hljs-string">&apos;53&apos;</span>,<span class="hljs-string">&apos;30&apos;</span>,<span class="hljs-string">&apos;5F&apos;</span>,<span class="hljs-string">&apos;43&apos;</span>,<span class="hljs-string">&apos;30&apos;</span>,<span class="hljs-string">&apos;4F&apos;</span>,<span class="hljs-string">&apos;4C&apos;</span>,<span class="hljs-string">&apos;7D&apos;</span>]
+b=<span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a:
+    b=b+chr(int(i,<span class="hljs-number">16</span>))
+print(b)
+</code></pre>
+</li>
+<li><p>&#x7B54;&#x6848;</p>
+<pre><code>flag{Re_1s_S0_C0OL}
+</code></pre></li>
+</ol>
 
                                 
                                 </section>
@@ -314,7 +337,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reverse","level":"1.2.1","depth":2,"next":{"title":"Web","level":"1.2.2","depth":2,"path":"CTF/Web.md","ref":"./CTF/Web.md","articles":[]},"previous":{"title":"CTF","level":"1.2","depth":1,"path":"CTF/README.md","ref":"./CTF/README.md","articles":[{"title":"Reverse","level":"1.2.1","depth":2,"path":"CTF/Reverse.md","ref":"./CTF/Reverse.md","articles":[]},{"title":"Web","level":"1.2.2","depth":2,"path":"CTF/Web.md","ref":"./CTF/Web.md","articles":[]},{"title":"Pwn","level":"1.2.3","depth":2,"path":"CTF/Pwn.md","ref":"./CTF/Pwn.md","articles":[]},{"title":"Crypto","level":"1.2.4","depth":2,"path":"CTF/Crypto.md","ref":"./CTF/Crypto.md","articles":[]},{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CTF/Reverse.md","mtime":"2022-11-02T10:57:58.964Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-02T13:58:19.980Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Reverse","level":"1.2.1","depth":2,"next":{"title":"Web","level":"1.2.2","depth":2,"path":"CTF/Web.md","ref":"./CTF/Web.md","articles":[]},"previous":{"title":"CTF","level":"1.2","depth":1,"path":"CTF/README.md","ref":"./CTF/README.md","articles":[{"title":"Reverse","level":"1.2.1","depth":2,"path":"CTF/Reverse.md","ref":"./CTF/Reverse.md","articles":[]},{"title":"Web","level":"1.2.2","depth":2,"path":"CTF/Web.md","ref":"./CTF/Web.md","articles":[]},{"title":"Pwn","level":"1.2.3","depth":2,"path":"CTF/Pwn.md","ref":"./CTF/Pwn.md","articles":[]},{"title":"Crypto","level":"1.2.4","depth":2,"path":"CTF/Crypto.md","ref":"./CTF/Crypto.md","articles":[]},{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CTF/Reverse.md","mtime":"2022-11-14T06:19:37.935Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-14T06:38:20.933Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
