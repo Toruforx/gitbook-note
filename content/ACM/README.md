@@ -251,3 +251,140 @@ int main()
 }
 ```
 
+### Codeforces Round #833（Div.2）
+
+#### <u>A.The Ultimate Square</u>
+
+一句话题意：略。
+
+思路：思维题，略。（下次要学习用python过签到
+
+```c++
+//
+// Created by Toru on 2022/11/12.
+//
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int t,n,a;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        a=(n+1)/2;
+        cout<<a<<endl;
+    }
+}
+```
+
+#### <u>B.Diverse Substrings</u>
+
+一句话题意：给一个数字（0-9）字符串，问满足题目条件的子串有几个，条件是该串中各数字出现次数均不超过串中数字种类。
+
+思路：二维循环+枚举优化。字符串的长度范围为1e5，因此n^2的枚举肯定超时，考虑对枚举范围进行优化。考虑最极限情况，串中字符种类最多为10种（0-9），每种数字均出现10次，此时不管下一个数字是什么新串都会不成立，因此串最长为100。一层枚举子串右边下标，二层枚举子串长度，最坏时间复杂度为O(100*n)。
+
+```c++
+//
+// Created by Toru on 2022/11/12.
+//
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int t,n,i,j,k,cnt,ans,tmp,sum[10],maxx;
+    string s;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        cin>>s;
+        ans=0;
+        for(i=0;i<s.length();i++)
+        {
+            cnt=0;
+            maxx=-1;
+            memset(sum,0,sizeof(sum));
+            for(j=0;j<100&&j<=i;j++)
+            {
+                tmp=s[i-j]-'0';
+                if(sum[tmp]==0)
+                    cnt++;
+                sum[tmp]++;
+                if(sum[tmp]>maxx)
+                    maxx=sum[tmp];
+                if(maxx<=cnt)
+                    ans++;
+            }
+            //cout<<ans<<endl;
+        }
+        cout<<ans<<endl;
+    }
+}
+```
+
+#### <u>C.Zero-Sum Prefixes</u>
+
+一句话题意：给n个数组成的数列，可以将数列中的0替换成任意数，问最多存在多少个为0的连续子集前缀和。
+
+思路：枚举数列中的0，对于数列中的每个0，假设该0为字符串最后一位，则考虑的是前面的前缀和里面出现次数最多的一个，此时将0取该前缀和的相反数即可。不断向后枚举0，数量不断累加，得到最后的答案。要点在于对各种数列情况的特判。
+
+```c++
+//
+// Created by Toru on 2022/11/12.
+//
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <map>
+#define MAXN 200005
+using namespace std;
+int main()
+{
+    int t,n,i,k,maxx,maxans,flag;
+    long long a[MAXN],sum;
+    map<long long,int> m;
+    cin>>t;
+    for(k=1;k<=t;k++)
+    {
+        maxans=0;
+        sum=0;
+        maxx=0;
+        flag=0;
+        m.clear();
+        cin>>n;
+        for(i=1;i<=n;i++)
+        {
+            cin>>a[i];
+            if(a[i]==0)
+            {
+                if(flag==1)
+                    maxans+=maxx;
+                else
+                    maxans+=m[0];
+                sum=0;
+                maxx=1;
+                m.clear();
+                m[0]++;
+                flag=1;
+            }
+            else
+            {
+                sum+=a[i];
+                m[sum]++;
+                if(m[sum]>maxx)
+                    maxx=m[sum];
+            }
+        }
+        if(flag==1)
+            maxans+=maxx;
+        else
+            maxans+=m[0];
+        cout<<maxans<<endl;
+    }
+}
+```
+
