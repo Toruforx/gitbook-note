@@ -271,6 +271,235 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="acm">ACM</h1>
+<h2 id="codeforces">Codeforces</h2>
+<h3 id="codeforces-round-832&#xFF08;div2&#xFF09;">Codeforces Round #832&#xFF08;Div.2&#xFF09;</h3>
+<h4 id="atwo-groups"><u>A.Two Groups</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;&#x4E86;&#x4E00;&#x4E2A;&#x542B;n&#x4E2A;&#x6570;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x8981;&#x6C42;&#x5C06;n&#x4E2A;&#x6570;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x5B50;&#x6570;&#x7EC4;s1&#x548C;s2&#xFF0C;&#x4F7F;s1&#x7684;&#x548C;&#x7684;&#x7EDD;&#x5BF9;&#x503C;&#x4E0E;s2&#x7684;&#x548C;&#x7684;&#x7EDD;&#x5BF9;&#x503C;&#x7684;&#x5DEE;&#x6700;&#x5927;&#x5316;&#xFF0C;&#x7ED9;&#x51FA;&#x6700;&#x5927;&#x503C;&#x7ED3;&#x679C;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x8D2A;&#x5FC3;&#x7B97;&#x6CD5;&#xFF0C;&#x5BF9;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x6570;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x5206;&#x522B;&#x8BA1;&#x7B97;&#x653E;&#x5165;s1&#x548C;s2&#x5F97;&#x5230;&#x7684;&#x5DEE;&#x503C;&#xFF0C;&#x9009;&#x62E9;&#x66F4;&#x4F18;&#x7684;&#xFF0C;&#x7ECF;&#x8FC7;n&#x6B21;&#x904D;&#x5386;&#x540E;&#x5F97;&#x5230;&#x6700;&#x4F18;&#x89E3;&#x3002;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;O(n)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/4.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> t,i,j,k,n,s1,s2,x,ans;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--)
+    {
+        s1=<span class="hljs-number">0</span>;s2=<span class="hljs-number">0</span>;
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+        {
+            <span class="hljs-built_in">cin</span>&gt;&gt;x;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(s1+x)-<span class="hljs-built_in">abs</span>(s2))&gt;=<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(s1)-<span class="hljs-built_in">abs</span>(s2+x)))
+            {
+                s1+=x;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                s2+=x;
+            }
+        }
+        ans=<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(s1)-<span class="hljs-built_in">abs</span>(s2));
+        <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+    }
+}
+</code></pre>
+<h4 id="bban-ban"><u>B.BAN BAN</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;&#x4E00;&#x4E2A;&#x6570;n&#xFF0C;&#x8981;&#x6C42;&#x5C06;n&#x4E2A;&quot;BAN&quot;&#x4F9D;&#x5E8F;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x901A;&#x8FC7;&#x6709;&#x9650;&#x6B21;&#x7684;&#x4EFB;&#x9009;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;swap&#x4F7F;&#x5F97;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x5B58;&#x5728;&quot;BAN&quot;&#x5B50;&#x4E32;&#x3002;&#x8981;&#x6C42;&#x7ED9;&#x51FA;&#x6700;&#x5C11;&#x64CD;&#x4F5C;&#x6B21;&#x6570;&#xFF0C;&#x4EE5;&#x53CA;&#x6BCF;&#x6B21;&#x64CD;&#x4F5C;&#x9009;&#x62E9;&#x7684;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x89C4;&#x5F8B;&#x9898;&#x3002;&#x9898;&#x76EE;&#x7684;&#x6837;&#x4F8B;&#x5DF2;&#x7ECF;&#x7ED9;&#x51FA;&#x4E86;n=1&#x548C;2&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x81EA;&#x5DF1;&#x63A8;&#x4E00;&#x4E0B;n=3&#x5C31;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x53EA;&#x9700;&#x8981;&#x6BCF;&#x6B21;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;BAN&#x7684;A&#x548C;&#x6700;&#x540E;&#x4E00;&#x4E2A;BAN&#x7684;N&#x4EA4;&#x6362;&#x4F7F;&#x4E0D;&#x5B58;&#x5728;N&#x5728;A&#x540E;&#x9762;&#x5373;&#x53EF;&#x3002;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5C06;n&#x4E2A;BAN&#x7684;&#x4E32;&#x8F6C;&#x5316;&#x4E3A;n-2&#x4E2A;BAN&#x7684;&#x4E32;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x4E0D;&#x65AD;&#x9012;&#x5F52;&#x76F4;&#x81F3;n=1&#x6216;2&#x9000;&#x51FA;&#x9012;&#x5F52;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/4.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(<span class="hljs-keyword">int</span> pre,<span class="hljs-keyword">int</span> len)</span>
+</span>{
+    <span class="hljs-keyword">if</span>(len == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span>(len==<span class="hljs-number">1</span>)
+    {
+        <span class="hljs-built_in">cout</span>&lt;&lt;pre+<span class="hljs-number">2</span>&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;pre+<span class="hljs-number">3</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-built_in">cout</span>&lt;&lt;pre+<span class="hljs-number">2</span>&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;pre+<span class="hljs-number">3</span>*len&lt;&lt;<span class="hljs-built_in">endl</span>;
+    handle(pre+<span class="hljs-number">3</span>,len<span class="hljs-number">-2</span>);
+    <span class="hljs-keyword">return</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> t,i,j,k,n;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--)
+    {
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        <span class="hljs-built_in">cout</span>&lt;&lt;(n+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+        handle(<span class="hljs-number">0</span>,n);
+    }
+}
+</code></pre>
+<h4 id="cswap-game"><u>C.Swap Game</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;&#x4E86;&#x4E00;&#x4E2A;&#x542B;n&#x4E2A;&#x6570;&#x7684;&#x6570;&#x7EC4;&#xFF0C;AB&#x53CC;&#x65B9;&#x8F6E;&#x6D41;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x64CD;&#x4F5C;&#x662F;&#x5C06;&#x6570;&#x7EC4;&#x6700;&#x524D;&#x9762;&#x7684;&#x6570;&#x51CF;1&#xFF0C;&#x9009;&#x62E9;&#x540E;&#x9762;&#x4E00;&#x4E2A;&#x6570;&#x653E;&#x5230;&#x6700;&#x524D;&#x9762;&#x3002;&#x5F53;&#x73A9;&#x5BB6;&#x56DE;&#x5408;&#x5F00;&#x59CB;&#x65F6;&#xFF0C;&#x6700;&#x524D;&#x9762;&#x7684;&#x6570;&#x4E3A;0&#xFF0C;&#x5219;&#x5224;&#x5B9A;&#x4E3A;&#x8BE5;&#x73A9;&#x5BB6;&#x8F93;&#x3002;A&#x5148;&#x624B;&#xFF0C;&#x5047;&#x8BBE;AB&#x90FD;&#x662F;&#x6700;&#x4F18;&#x7B56;&#x7565;&#xFF0C;&#x5224;&#x65AD;&#x6700;&#x540E;&#x8C01;&#x4F1A;&#x8D62;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x7ECF;&#x5178;&#x535A;&#x5F08;&#x8BBA;&#xFF0C;&#x7531;&#x5FC5;&#x8D25;&#x72B6;&#x6001;&#xFF08;&#x6700;&#x524D;&#x9762;&#x7684;&#x6570;&#x4E3A;0&#xFF09;&#x5F80;&#x4E0A;&#x63A8;&#xFF0C;&#x53D1;&#x73B0;A/B&#x7684;&#x6700;&#x4F18;&#x7B56;&#x7565;&#x5C31;&#x662F;&#x9009;&#x62E9;&#x540E;&#x9762;&#x6700;&#x5C0F;&#x7684;&#x6570;&#x653E;&#x5230;&#x6700;&#x524D;&#x9762;&#x8BA9;&#x5BF9;&#x65B9;&#x51CF;1&#xFF0C;&#x7531;&#x4E8E;A&#x5148;&#x624B;&#xFF0C;A&#x9009;&#x5230;&#x7684;&#x6570;&#x4E00;&#x5B9A;&#x6BD4;B&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;B&#x7684;&#x4E00;&#x7EBF;&#x751F;&#x673A;&#x5C31;&#x662F;&#x6700;&#x524D;&#x9762;&#x7684;&#x6570;&#x51CF;1&#x540E;&#x653E;&#x5230;&#x540E;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x9009;&#x62E9;&#x8FD9;&#x4E2A;&#x6570;&#xFF01;&#x6240;&#x4EE5;&#x6BD4;&#x8F83;&#x521D;&#x59CB;&#x5C40;&#x9762;&#x6700;&#x524D;&#x9762;&#x7684;&#x6570;&#x548C;&#x540E;&#x9762;&#x6700;&#x5C0F;&#x6570;&#x5C31;&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x80DC;&#x8D1F;&#x4E86;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/4.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> t,i,j,k,n,a[<span class="hljs-number">100005</span>],mina,minb;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--)
+    {
+        mina=<span class="hljs-number">1000000005</span>,minb=<span class="hljs-number">1000000005</span>;
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        <span class="hljs-built_in">cin</span>&gt;&gt;a[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n;i++)
+        {
+            <span class="hljs-built_in">cin</span>&gt;&gt;a[i];
+            <span class="hljs-keyword">if</span>(a[i]&lt;mina)
+                mina=a[i];
+        }
+        minb=a[<span class="hljs-number">0</span>]<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">if</span>(mina&lt;=minb)
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;Alice\n&quot;</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;Bob\n&quot;</span>;
+        }
+    }
+}
+</code></pre>
+<h4 id="dyet-another-problem"><u>D.Yet Another Problem</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;&#x4E86;&#x4E00;&#x4E2A;&#x542B;n&#x4E2A;&#x6570;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x8FDB;&#x884C;q&#x6B21;&#x72EC;&#x7ACB;&#x67E5;&#x8BE2;&#xFF0C;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x4F1A;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x533A;&#x95F4;&#x7684;&#x5DE6;&#x53F3;&#x754C;&#x9650;l&#x548C;r&#xFF0C;&#x6BCF;&#x6B21;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x9009;&#x53D6;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A;&#x5947;&#x6570;&#x7684;&#x5B50;&#x533A;&#x95F4;&#xFF0C;&#x5C06;&#x5B50;&#x533A;&#x95F4;&#x7684;&#x5F02;&#x6216;&#x548C;&#x8D4B;&#x503C;&#x7ED9;&#x5B50;&#x533A;&#x95F4;&#x6BCF;&#x4E2A;&#x6570;&#xFF0C;&#x8981;&#x6C42;&#x7ECF;&#x8FC7;&#x6709;&#x9650;&#x6B21;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x4F7F;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x5185;&#x6240;&#x6709;&#x6570;&#x5747;&#x4E3A;0&#xFF0C;&#x5982;&#x679C;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x8F93;&#x51FA;&#x6700;&#x5C11;&#x64CD;&#x4F5C;&#x6B21;&#x6570;&#xFF0C;&#x4E0D;&#x80FD;&#x5219;&#x8F93;&#x51FA;-1&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x5206;&#x7C7B;&#x8BA8;&#x8BBA;+&#x627E;&#x89C4;&#x5F8B;&#x3002;&#x5728;&#x63A8;&#x6837;&#x4F8B;&#x7684;&#x65F6;&#x5019;&#x5F97;&#x51FA;&#x4E86;&#x51E0;&#x4E2A;&#x7ED3;&#x8BBA;&#xFF1A;</p>
+<ol>
+<li>&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x7684;&#x5F02;&#x6216;&#x548C;&#x4E0D;&#x4E3A;0&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x5B9E;&#x73B0;</li>
+<li>&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x6240;&#x6709;&#x6570;&#x76F8;&#x7B49;&#x4E14;&#x4E0D;&#x4E3A;0&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x5B9E;&#x73B0;</li>
+<li>&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x4E3A;&#x5947;&#x6570;&#x957F;&#x4E14;&#x5F02;&#x6216;&#x548C;&#x4E3A;0&#xFF0C;&#x5FC5;&#x7136;1&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;</li>
+</ol>
+<p>&#x6240;&#x4EE5;&#x96BE;&#x70B9;&#x5C31;&#x5728;&#x4E8E;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x4E3A;&#x5076;&#x6570;&#x957F;&#x4E14;&#x5F02;&#x6216;&#x548C;&#x4E3A;0&#x8BE5;&#x5982;&#x4F55;&#x5224;&#x65AD;&#xFF0C;&#x5DF2;&#x77E5;&#x5076;&#x6570;&#x957F;&#x7684;&#x533A;&#x95F4;&#x80AF;&#x5B9A;&#x53EF;&#x4EE5;&#x5212;&#x5206;&#x4E3A;2&#x4E2A;&#x5947;&#x6570;&#x957F;&#x7684;&#x5B50;&#x533A;&#x95F4;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x9700;&#x8981;&#x627E;&#x662F;&#x5426;&#x5B58;&#x5728;&#x4ECE;l&#x5F00;&#x59CB;&#x5947;&#x6570;&#x957F;&#x7684;&#x5B50;&#x533A;&#x95F4;&#x7684;&#x5F02;&#x6216;&#x548C;&#x4E3A;0&#x5373;&#x53EF;&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728;&#x5219;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x3002;&#x53E6;&#x5916;&#x8FD8;&#x9700;&#x8981;&#x5224;&#x65AD;&#x5076;&#x6570;&#x957F;&#x7684;&#x67E5;&#x8BE2;&#x533A;&#x95F4;&#x524D;&#x540E;&#x662F;&#x5426;&#x5B58;&#x5728;0&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728;&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x6210;&#x5947;&#x6570;&#x957F;&#x533A;&#x95F4;&#x6765;&#x770B;&#x5F85;&#x3002;&#x53E6;&#x5916;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;n&#x548C;q&#x90FD;&#x662F;2e5&#x8303;&#x56F4;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;TLE&#xFF0C;&#x9700;&#x8981;&#x5FEB;&#x8BFB;&#x548C;O(n)&#x590D;&#x6742;&#x5EA6;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x9884;&#x5904;&#x7406;&#x9700;&#x8981;&#x591A;&#x82B1;&#x4E00;&#x4E9B;&#x5FC3;&#x601D;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/4.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXN 200005</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    ios::sync_with_stdio(<span class="hljs-literal">false</span>);
+    <span class="hljs-keyword">int</span> n,q,i,j,l,r,a[MAXN],sum[MAXN]={<span class="hljs-number">0</span>},cnt=<span class="hljs-number">0</span>,flag,tmp,same[MAXN]={<span class="hljs-number">0</span>},canl[MAXN]={<span class="hljs-number">0</span>};
+    <span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; m;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vec[MAXN];
+    <span class="hljs-built_in">cin</span>&gt;&gt;n&gt;&gt;q;
+    m[<span class="hljs-number">0</span>]=++cnt;
+    vec[cnt].push_back(<span class="hljs-number">0</span>);
+    a[<span class="hljs-number">0</span>]=<span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+    {
+        <span class="hljs-built_in">cin</span>&gt;&gt;a[i];
+        sum[i]=sum[i<span class="hljs-number">-1</span>]^a[i];
+        <span class="hljs-keyword">if</span>(m[sum[i]]==<span class="hljs-number">0</span>)
+        {
+            m[sum[i]]=++cnt;
+            vec[cnt].push_back(i);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            vec[m[sum[i]]].push_back(i);
+        }
+        <span class="hljs-keyword">if</span>(a[i]==a[i<span class="hljs-number">-1</span>])
+        {
+            same[i]=same[i<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            same[i]=<span class="hljs-number">1</span>;
+        }
+    }
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=cnt;i++)
+    {
+        canl[vec[i][vec[i].size()<span class="hljs-number">-1</span>]]=<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span>(j=vec[i].size()<span class="hljs-number">-2</span>;j&gt;=<span class="hljs-number">0</span>;j--)
+        {
+            tmp=vec[i][j+<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span>((tmp-vec[i][j])%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)
+            {
+                canl[vec[i][j]]=canl[tmp];
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                canl[vec[i][j]]=tmp;
+            }
+        }
+    }
+    <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=q;j++)
+    {
+        <span class="hljs-built_in">cin</span>&gt;&gt;l&gt;&gt;r;
+        <span class="hljs-keyword">if</span>((sum[r]^sum[l<span class="hljs-number">-1</span>])!=<span class="hljs-number">0</span>)
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;-1\n&quot;</span>;
+            <span class="hljs-keyword">continue</span>;
+        }
+        flag=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(r-l+<span class="hljs-number">1</span>&gt;same[r])
+            flag=<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">0</span>)
+        {
+            <span class="hljs-keyword">if</span>(a[l]==<span class="hljs-number">0</span>&amp;&amp;a[r]==<span class="hljs-number">0</span>)
+            {
+                <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;0\n&quot;</span>;
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                <span class="hljs-keyword">if</span>((r-l)%<span class="hljs-number">2</span>==<span class="hljs-number">1</span>)
+                {
+                    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;-1\n&quot;</span>;
+                    <span class="hljs-keyword">continue</span>;
+                }
+                <span class="hljs-keyword">else</span>
+                {
+                    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;-1\n&quot;</span>;
+                    <span class="hljs-keyword">continue</span>;
+                }
+            }
+        }
+        <span class="hljs-keyword">if</span>((r-l)%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;1\n&quot;</span>;
+            <span class="hljs-keyword">continue</span>;
+        }
+        flag=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(canl[l<span class="hljs-number">-1</span>]!=<span class="hljs-number">-1</span>&amp;&amp;canl[l<span class="hljs-number">-1</span>]&lt;=r)
+            flag=<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(flag)
+        {
+            <span class="hljs-keyword">if</span>(a[l]==<span class="hljs-number">0</span>||a[r]==<span class="hljs-number">0</span>)
+                <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;1\n&quot;</span>;
+            <span class="hljs-keyword">else</span>
+                <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;2\n&quot;</span>;
+            <span class="hljs-keyword">continue</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">&quot;-1\n&quot;</span>;
+        }
+    }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -314,7 +543,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ACM","level":"1.3","depth":1,"next":{"title":"REVERSE","level":"1.4","depth":1,"path":"REVERSE/README.md","ref":"./REVERSE/README.md","articles":[]},"previous":{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ACM/README.md","mtime":"2022-11-02T10:57:58.975Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-02T13:59:58.057Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ACM","level":"1.3","depth":1,"next":{"title":"REVERSE","level":"1.4","depth":1,"path":"REVERSE/README.md","ref":"./REVERSE/README.md","articles":[]},"previous":{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ACM/README.md","mtime":"2022-11-07T08:15:44.791Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-14T06:28:46.272Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
