@@ -32,5 +32,24 @@
    flag{Re_1s_S0_C0OL}
    ```
 
-   
+
+### 游戏过关
+
+题目链接：https://ctf.bugku.com/challenges/detail/id/116.html
+
+思路：程序是一个游戏，如果成功解决游戏问题会返回flag值，考虑ida找flag值或者ollydbg动态调试。（也可以自给自足把游戏通关^^
+
+1. exeinfope显示文件无壳，是32位程序，因此需要使用ida32位进行分析。
+
+2. ida View-String查找包含flag提示的字符串，找到之后返回至该变量汇编地址，跳转到引用该变量的函数，F5生成该函数C伪代码，其实是两个数组的运算最后得到字符串。
+
+3. 写python脚本输出字符串。
+
+4. 答案
+
+   ```
+   zsctf{T9is_tOpic_1s_v5ry_int7resting_b6t_others_are_n0t}
+   ```
+
+5. 推荐使用ollydbg动态调试，需要掌握ASCII智能搜索，寻找flag前地址对应函数，汇编改代码并且运行直接输出flag。
 

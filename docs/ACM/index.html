@@ -500,6 +500,127 @@
     }
 }
 </code></pre>
+<h3 id="codeforces-round-833&#xFF08;div2&#xFF09;">Codeforces Round #833&#xFF08;Div.2&#xFF09;</h3>
+<h4 id="athe-ultimate-square"><u>A.The Ultimate Square</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7565;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x601D;&#x7EF4;&#x9898;&#xFF0C;&#x7565;&#x3002;&#xFF08;&#x4E0B;&#x6B21;&#x8981;&#x5B66;&#x4E60;&#x7528;python&#x8FC7;&#x7B7E;&#x5230;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/12.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> t,n,a;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--)
+    {
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        a=(n+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;
+        <span class="hljs-built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="hljs-built_in">endl</span>;
+    }
+}
+</code></pre>
+<h4 id="bdiverse-substrings"><u>B.Diverse Substrings</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF08;0-9&#xFF09;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x95EE;&#x6EE1;&#x8DB3;&#x9898;&#x76EE;&#x6761;&#x4EF6;&#x7684;&#x5B50;&#x4E32;&#x6709;&#x51E0;&#x4E2A;&#xFF0C;&#x6761;&#x4EF6;&#x662F;&#x8BE5;&#x4E32;&#x4E2D;&#x5404;&#x6570;&#x5B57;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x5747;&#x4E0D;&#x8D85;&#x8FC7;&#x4E32;&#x4E2D;&#x6570;&#x5B57;&#x79CD;&#x7C7B;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x4E8C;&#x7EF4;&#x5FAA;&#x73AF;+&#x679A;&#x4E3E;&#x4F18;&#x5316;&#x3002;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;&#x8303;&#x56F4;&#x4E3A;1e5&#xFF0C;&#x56E0;&#x6B64;n^2&#x7684;&#x679A;&#x4E3E;&#x80AF;&#x5B9A;&#x8D85;&#x65F6;&#xFF0C;&#x8003;&#x8651;&#x5BF9;&#x679A;&#x4E3E;&#x8303;&#x56F4;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x3002;&#x8003;&#x8651;&#x6700;&#x6781;&#x9650;&#x60C5;&#x51B5;&#xFF0C;&#x4E32;&#x4E2D;&#x5B57;&#x7B26;&#x79CD;&#x7C7B;&#x6700;&#x591A;&#x4E3A;10&#x79CD;&#xFF08;0-9&#xFF09;&#xFF0C;&#x6BCF;&#x79CD;&#x6570;&#x5B57;&#x5747;&#x51FA;&#x73B0;10&#x6B21;&#xFF0C;&#x6B64;&#x65F6;&#x4E0D;&#x7BA1;&#x4E0B;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x662F;&#x4EC0;&#x4E48;&#x65B0;&#x4E32;&#x90FD;&#x4F1A;&#x4E0D;&#x6210;&#x7ACB;&#xFF0C;&#x56E0;&#x6B64;&#x4E32;&#x6700;&#x957F;&#x4E3A;100&#x3002;&#x4E00;&#x5C42;&#x679A;&#x4E3E;&#x5B50;&#x4E32;&#x53F3;&#x8FB9;&#x4E0B;&#x6807;&#xFF0C;&#x4E8C;&#x5C42;&#x679A;&#x4E3E;&#x5B50;&#x4E32;&#x957F;&#x5EA6;&#xFF0C;&#x6700;&#x574F;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;O(100*n)&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/12.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> t,n,i,j,k,cnt,ans,tmp,sum[<span class="hljs-number">10</span>],maxx;
+    <span class="hljs-built_in">string</span> s;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--)
+    {
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        <span class="hljs-built_in">cin</span>&gt;&gt;s;
+        ans=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;s.length();i++)
+        {
+            cnt=<span class="hljs-number">0</span>;
+            maxx=<span class="hljs-number">-1</span>;
+            <span class="hljs-built_in">memset</span>(sum,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(sum));
+            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">100</span>&amp;&amp;j&lt;=i;j++)
+            {
+                tmp=s[i-j]-<span class="hljs-string">&apos;0&apos;</span>;
+                <span class="hljs-keyword">if</span>(sum[tmp]==<span class="hljs-number">0</span>)
+                    cnt++;
+                sum[tmp]++;
+                <span class="hljs-keyword">if</span>(sum[tmp]&gt;maxx)
+                    maxx=sum[tmp];
+                <span class="hljs-keyword">if</span>(maxx&lt;=cnt)
+                    ans++;
+            }
+            <span class="hljs-comment">//cout&lt;&lt;ans&lt;&lt;endl;</span>
+        }
+        <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+    }
+}
+</code></pre>
+<h4 id="czero-sum-prefixes"><u>C.Zero-Sum Prefixes</u></h4>
+<p>&#x4E00;&#x53E5;&#x8BDD;&#x9898;&#x610F;&#xFF1A;&#x7ED9;n&#x4E2A;&#x6570;&#x7EC4;&#x6210;&#x7684;&#x6570;&#x5217;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x6570;&#x5217;&#x4E2D;&#x7684;0&#x66FF;&#x6362;&#x6210;&#x4EFB;&#x610F;&#x6570;&#xFF0C;&#x95EE;&#x6700;&#x591A;&#x5B58;&#x5728;&#x591A;&#x5C11;&#x4E2A;&#x4E3A;0&#x7684;&#x8FDE;&#x7EED;&#x5B50;&#x96C6;&#x524D;&#x7F00;&#x548C;&#x3002;</p>
+<p>&#x601D;&#x8DEF;&#xFF1A;&#x679A;&#x4E3E;&#x6570;&#x5217;&#x4E2D;&#x7684;0&#xFF0C;&#x5BF9;&#x4E8E;&#x6570;&#x5217;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;0&#xFF0C;&#x5047;&#x8BBE;&#x8BE5;0&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x6700;&#x540E;&#x4E00;&#x4F4D;&#xFF0C;&#x5219;&#x8003;&#x8651;&#x7684;&#x662F;&#x524D;&#x9762;&#x7684;&#x524D;&#x7F00;&#x548C;&#x91CC;&#x9762;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x6700;&#x591A;&#x7684;&#x4E00;&#x4E2A;&#xFF0C;&#x6B64;&#x65F6;&#x5C06;0&#x53D6;&#x8BE5;&#x524D;&#x7F00;&#x548C;&#x7684;&#x76F8;&#x53CD;&#x6570;&#x5373;&#x53EF;&#x3002;&#x4E0D;&#x65AD;&#x5411;&#x540E;&#x679A;&#x4E3E;0&#xFF0C;&#x6570;&#x91CF;&#x4E0D;&#x65AD;&#x7D2F;&#x52A0;&#xFF0C;&#x5F97;&#x5230;&#x6700;&#x540E;&#x7684;&#x7B54;&#x6848;&#x3002;&#x8981;&#x70B9;&#x5728;&#x4E8E;&#x5BF9;&#x5404;&#x79CD;&#x6570;&#x5217;&#x60C5;&#x51B5;&#x7684;&#x7279;&#x5224;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by Toru on 2022/11/12.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXN 200005</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> t,n,i,k,maxx,maxans,flag;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a[MAXN],sum;
+    <span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>,<span class="hljs-keyword">int</span>&gt; m;
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">for</span>(k=<span class="hljs-number">1</span>;k&lt;=t;k++)
+    {
+        maxans=<span class="hljs-number">0</span>;
+        sum=<span class="hljs-number">0</span>;
+        maxx=<span class="hljs-number">0</span>;
+        flag=<span class="hljs-number">0</span>;
+        m.clear();
+        <span class="hljs-built_in">cin</span>&gt;&gt;n;
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)
+        {
+            <span class="hljs-built_in">cin</span>&gt;&gt;a[i];
+            <span class="hljs-keyword">if</span>(a[i]==<span class="hljs-number">0</span>)
+            {
+                <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">1</span>)
+                    maxans+=maxx;
+                <span class="hljs-keyword">else</span>
+                    maxans+=m[<span class="hljs-number">0</span>];
+                sum=<span class="hljs-number">0</span>;
+                maxx=<span class="hljs-number">1</span>;
+                m.clear();
+                m[<span class="hljs-number">0</span>]++;
+                flag=<span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                sum+=a[i];
+                m[sum]++;
+                <span class="hljs-keyword">if</span>(m[sum]&gt;maxx)
+                    maxx=m[sum];
+            }
+        }
+        <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">1</span>)
+            maxans+=maxx;
+        <span class="hljs-keyword">else</span>
+            maxans+=m[<span class="hljs-number">0</span>];
+        <span class="hljs-built_in">cout</span>&lt;&lt;maxans&lt;&lt;<span class="hljs-built_in">endl</span>;
+    }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -543,7 +664,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ACM","level":"1.3","depth":1,"next":{"title":"REVERSE","level":"1.4","depth":1,"path":"REVERSE/README.md","ref":"./REVERSE/README.md","articles":[]},"previous":{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ACM/README.md","mtime":"2022-11-07T08:15:44.791Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-14T06:28:46.272Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ACM","level":"1.3","depth":1,"next":{"title":"REVERSE","level":"1.4","depth":1,"path":"REVERSE/README.md","ref":"./REVERSE/README.md","articles":[]},"previous":{"title":"Misc","level":"1.2.5","depth":2,"path":"CTF/Misc.md","ref":"./CTF/Misc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ACM/README.md","mtime":"2022-11-14T13:51:38.006Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-15T11:39:48.660Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
