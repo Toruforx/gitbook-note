@@ -53,3 +53,12 @@
 
 5. 推荐使用ollydbg动态调试，需要掌握ASCII智能搜索，寻找flag前地址对应函数，汇编改代码并且运行直接输出flag。
 
+### signin
+
+题目链接：https://ctf.bugku.com/challenges/detail/id/136
+
+思路：附件解压得到一个apk文件，所以是一道安卓逆向的题目，使用jbe进行apk逆向，查看源码大概逻辑寻找flag值。
+
+1. jbe进行逆向分析，考虑到附件是一个账号登陆的软件，flag值的出现应该与登陆功能有关，找到MainActivity中onClick部分代码进行解析，查看java代码。
+2. 分析代码发现函数是通过读入输入栏字符串与（内置字符串常量的逆的base64解码）是否一致来判断登陆成功与否，所以在resources-string.xml中查找字符串即可。
+3. 找到字符串，进行翻转和base64解密。
