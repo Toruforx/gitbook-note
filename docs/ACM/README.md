@@ -388,3 +388,434 @@ int main()
 }
 ```
 
+### Educational Codeforces Round 140 (Rated for Div. 2)
+
+#### <u>A. Cut the Triangle</u>
+
+一句话题意：给了t组三角形三个点的坐标，让你判断这个三角形能否用垂直线或者水平线切割成两个三角形。
+
+思路：如果三角形有一条竖直边和一条水平边则说明绝对无法切割，判断这个即可。
+
+```c++
+//
+// Created by Toru on 2022/12/16.
+// Ugly codeQAQ
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main() {
+    int t,x[3],y[3],dx[3],dy[3],i,j,k,flag;
+    cin>>t;
+    while(t--) {
+        flag=0;
+        for(i=0;i<3;i++)
+            cin>>x[i]>>y[i];
+        dx[0]=x[0]-x[1];
+        dx[1]=x[0]-x[2];
+        dx[2]=x[1]-x[2];
+        dy[0]=y[0]-y[1];
+        dy[1]=y[0]-y[2];
+        dy[2]=y[1]-y[2];
+        for(i=0;i<3;i++)
+        {
+            if(dx[i]==0)
+                flag++;
+            if(dy[i]==0)
+                flag++;}
+        if(flag>=2)
+            cout<<"NO\n";
+        else
+            cout<<"YES\n";
+    }
+}
+```
+
+#### <u>B. Block Towers</u>
+
+一句话题意：n个元素的数组，操作为选择两个元素，数字大的-1，数字小的+1，问你经过无限制次这样的操作后，最前面的元素最大值为多少。
+
+思路：贪心做法。将除开最前面元素的数组进行排序，从前往后遍历，如果大于最前面的元素就进行有限次操作直到小于等于最前面的元素（直接平分即可）。
+
+```c++
+//
+// Created by Toru on 2022/12/16.
+//
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    int t,i,j,k,n,a[200005],b[200005],cnt,ans;
+    cin>>t;
+    while(t--) {
+        cnt=0;
+        cin>>n;
+        cin>>a[1];
+        for(i=2;i<=n;i++)
+        {
+            cin>>a[i];
+            if(a[i]>a[1])
+                b[++cnt]=a[i];
+        }
+        sort(b+1,b+cnt+1);
+        for(i=1;i<=cnt;i++)
+            if(a[1]<b[i])
+                a[1]=(a[1]+b[i]+1)/2;
+        cout<<a[1]<<endl;
+    }
+}
+```
+
+#### <u>C. Count Binary Strings</u>
+
+一句话题意：给出串的长度以及每个子串需要满足的条件（有三种条件：0-无条件、1-子串全1or全0、2-子串有1有0），问你能存在多少指定长度满足条件的01串，结果取模。
+
+思路：比赛的时候想的是将确定全1或全0的子串转成单个元素看待，记录元素和每个元素最近的不同数字的元素形成pair对，然后分开考虑，再用快速幂等方法进行连乘，结果发现pair对的关系太复杂，没办法实现（寄寄寄）。比赛之后考虑用动态规划的方式来解决，dp[i] [j]表示从头开始长度为i的子串满足条件并且第i位的值为j。对i前面的每一位进行判断其是否可以是离i最近的不同数字，如果可以，将对dp[i] [0/1]做出贡献。假设第j位是离第i位最近的不同数字，则应该满足以下两个条件：
+
+- 不能存在包含第j位且第j位不是末尾的子串要求为全0or全1
+- 不能存在j和i之间且不包括j的子串要求为串中有1有0
+
+```c++
+#include <cstdio>
+#include <iostream>
+#define mod 998244353
+using namespace std;
+int s[105][105], dp[105][2], n;
+int check(int l, int r) {
+    int i, j;
+    for(i = r;i > l;i --) {
+        for(j = i;j > l;j --) if(s[j][i] == 2) return 0;
+        for(j = l;j >= 0;j --) if(s[j][i] == 1) return 0;
+    }
+    return 1;
+}
+int main() {
+    int i, j, flag=0;
+    cin>>n;
+    for(i = 1;i <= n;i ++) {
+        for(j = i;j <= n;j ++) {
+            cin>>s[i][j];
+            if(i == j && s[i][j] == 2)
+                flag = 1;
+        }
+    }
+    if(flag) {
+        cout<<"0";
+        return 0;
+    }
+    dp[0][1] = 1;
+    dp[0][0] = 1;
+    for(i = 1;i <= n;i ++) {
+        for(j = i-1;j >= 0;j --) {
+            if(check(j, i)) {
+                dp[i][0] = (dp[i][0] + dp[j][1]) % mod;
+                dp[i][1] = (dp[i][1] + dp[j][0]) % mod;
+            }
+        }
+    }
+    cout<<(dp[n][0] + dp[n][1]) % mod;
+}
+```
+
+#### <u>D. Playoff</u>
+
+一句话题意：有2<sup>n</sup>个选手（1~2<sup>n</sup>），以1v1形式进行比赛（每组选手随机分配），总共进行n轮比赛，给出一个长度为n的01串，表示各轮比赛的规则（0为数字小的获胜，1反之），让你找出最后可能获胜的数字。
+
+思路：0代表当前一些数字最大的无法获胜，1代表当前一些数字最小的无法获胜，计算0和1的次数，找规律发现无法获胜的数量需要进行连乘，然后排除无法获胜的，确定可能获胜的范围输出即可。
+
+```c++
+//
+// Created by Toru on 2022/12/17.
+//
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main() {
+    int n,i,j,k,s0=0,s1=0,res=1,cnt0=1,cnt1=1;
+    string s;
+    cin>>n;
+    cin>>s;
+    for(i=1;i<=n;i++)
+        res*=2;
+    for(i=0;i<s.length();i++) {
+        if(s[i]=='0')
+            s0++;
+        if(s[i]=='1')
+            s1++;
+    }
+    if(s0==n)
+    {
+        cout<<1;
+        return 0;
+    }
+    if(s1==n)
+    {
+        cout<<res;
+        return 0;
+    }
+    for(i=1;i<=s0;i++)
+        cnt0*=2;
+    for(i=1;i<=s1;i++)
+        cnt1*=2;
+    for(i=cnt1;i<=res-cnt0+1;i++)
+        cout<<i<<" ";
+}
+```
+
+### Codeforces Round #839 (Div. 3)
+
+#### <u>D. Absolute Sorting</u>
+
+一句话题意：给一组数列，问你是否存在一个x，使得数列中各元素值减去x的绝对值组成的数列为一个不严格递增序列。如果存在输出x的值，不存在输出-1。
+
+思路：首先，初始数列为递增或递减将一定满足，那么考虑的就是递增递减交替出现是否满足。对每个交替点进行考虑，计算满足所有交替点要求的x的最小值（即能使交替处恢复正常的x的值），然后将x带入原数列进行计算得到新数列，若新数列满足要求输出x的值，反之不可能。
+
+```c++
+//
+// Created by Toru on 2022/12/18.
+//
+#include <cstdio>
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int x,t,i,j,k,n,a[200005],b[200005],flag1,flag2,flag,maxx,minn,res;
+    cin>>t;
+    while(t--){
+        cin>>n;
+        flag1=0;
+        flag2=0;
+        flag=0;
+        res=0;
+        cin>>a[1];
+        minn=a[1];
+        maxx=a[1];
+        for(i=2;i<=n;i++)
+        {
+            cin>>a[i];
+            if(a[i]<=a[i-1])
+                flag2++;
+            if(a[i]>=a[i-1])
+                flag1++;
+            maxx=max(maxx,a[i]);
+            minn=min(minn,a[i]);
+        }
+        if(flag1==n-1)
+        {
+            cout<<minn-1<<endl;
+            continue;
+        }
+        if(flag2==n-1)
+        {
+            cout<<maxx+1<<endl;
+            continue;
+        }
+        for(i=2;i<=n;i++)
+            if(a[i]<a[i-1])
+                res=max(res,(a[i-1]+a[i]+1)/2);
+        b[1]=abs(a[1]-res);
+        for(i=2;i<=n;i++)
+        {
+            b[i]=abs(a[i]-res);
+            if(b[i]<b[i-1])
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0)
+        {
+            cout<<res<<endl;
+            continue;
+        }
+        else
+        {
+            cout<<"-1\n";
+        }
+    }
+}
+```
+
+#### <u>E. Permutation Game</u>
+
+一句话题意：略。
+
+思路：博弈论，关键在于考虑平局情况，不赘述。
+
+```c++
+//
+// Created by Toru on 2022/12/18.
+//
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main() {
+    int t,i,j,k,n,p[500005],a,b,s;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        a=0;b=0;s=0;
+        for(i=1;i<=n;i++)
+        {
+            cin>>p[i];
+            if(p[i]!=i&&p[i]!=n-i+1)
+            {
+                s++;
+                continue;
+            }
+            if(p[i]!=i)
+                a++;
+            if(p[i]!=n-i+1)
+                b++;
+        }
+        if(b>=a+s)
+        {
+            cout<<"First\n";
+            continue;
+        }
+        if(a>b+s)
+        {
+            cout<<"Second\n";
+            continue;
+        }
+        cout<<"Tie\n";
+        continue;
+    }
+}
+```
+
+#### <u>F. Copy of a Copy of a Copy</u>
+
+一句话题意：给出q+1张01串组成的n*m大小的图片，玩家可以进行以下两种操作：
+
+- 当一个格子四周的格子都存在且这五个格子数字相同时，将中间的格子变成另一个数字
+- 将当前的状态记录为图片
+
+要求你找出最开始的图片，并根据这q+1张图片列出具体的操作序列。
+
+思路：已知第一种操作会减少“+”型大格子的数量，这种操作是不可逆的，所以可以记录每张图片"+"型格子的数量并进行降序排序，就是图片拍摄的顺序，然后每两张图片之间进行对比找出第一种操作的具体位置即可。
+
+```c++
+//
+// Created by Toru on 2022/12/19.
+//
+#include <cstdio>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+struct noid{
+    int square;
+    int id;
+}e[105];
+bool cmp(noid a,noid b) {
+    return a.square<b.square;
+}
+int main() {
+    int n,m,k,i,j,t,x,y,a[105][35][35]={0},res,flag;
+    string str;
+    cin>>n>>m>>k;
+    for(i=1;i<=k+1;i++)
+    {
+        e[i].id=i;
+        e[i].square=0;
+        for(j=1;j<=n;j++)
+        {
+            cin>>str;
+            for(t=0;t<str.length();t++)
+                a[i][j][t+1]=str[t]-'0';
+        }
+        for(j=2;j<n;j++)
+        {
+            for(t=2;t<m;t++)
+            {
+                x=j;y=t;
+                res=a[i][x][y]+a[i][x-1][y]+a[i][x+1][y]+a[i][x][y-1]+a[i][x][y+1];
+                if(res%5==0)
+                    e[i].square++;
+            }
+        }
+    }
+    sort(e+1,e+k+2,cmp);
+    cout<<e[1].id<<endl;
+    res=k;
+    for(i=2;i<=k+1;i++)
+    {
+        for(j=2;j<n;j++)
+            for(t=2;t<m;t++)
+                if(a[e[i].id][j][t]!=a[e[i-1].id][j][t])
+                    res++;
+    }
+    cout<<res<<endl;
+    for(i=2;i<=k+1;i++)
+    {
+        for(j=2;j<n;j++)
+            for(t=2;t<m;t++)
+                if(a[e[i].id][j][t]!=a[e[i-1].id][j][t])
+                    cout<<"1 "<<j<<" "<<t<<endl;
+        cout<<"2 "<<e[i].id<<endl;
+    }
+}
+
+```
+
+#### <u>G. Gaining Rating</u>
+
+一句话题意：给出一个含有n个元素的数列，用户初始值x和用户目标值y。每次挑选数列中的元素进行比较，若用户值大于元素值则用户值+1，反之-1。要求数列中每个元素的选取要雨露均沾（即在选择某个元素第i+1次的时候，其他元素至少都要被选择过i次），问最少经过多少次的选择，用户值能到达目标值y。
+
+思路：数列中插入一个元素值为y方便计算。因为元素选取需要雨露均沾，干脆定义为一组数列全部选取完i次为i轮，然后计算用户最先大于每一个元素的轮数与步数，数列需要进行排序。时间复杂度大概是O(nlogn)。
+
+```c++
+//
+// Created by Toru on 2022/12/22.
+//
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+#define MAXN 200005
+using namespace std;
+int main() {
+    int t, n, i, j, k;
+    long long x, y, a[MAXN], round[MAXN], sum, p, np, bef, flag;
+    cin>>t;
+    a[0] = -1;
+    while(t --) {
+        cin>>n>>x>>y;
+        for(i = 1;i <= n;i ++) {
+            cin>>a[i];
+            a[i] -= x;
+        }
+        a[n+1] = y - x;
+        sort(a+1, a+n+2);
+        flag = 0;
+        for(i = 1; i <= n;i ++)
+            if(i - 1 < a[i]) {
+                if(2 * i - 2 - n <= 0 && y > x + i - 1) flag = 1;
+                break;
+            }
+        if(flag) {
+            cout<<"-1\n";
+            continue;
+        }
+        p = 1;
+        sum = 0;
+        np = 0;
+        bef = 0;
+        for(i = 1;i <= n + 1;i ++) {
+            if((bef + i - 1) < a[i]) {
+                sum = 2 * i - 2 - n;
+                np = p;
+                p = (a[i] - i + sum - bef) / sum + np;
+                bef = bef + (p - np) * sum;
+            }
+            round[i] =max((p - 1) * n + a[i] - bef, 0LL);
+            if(a[i] == y - x)
+                break;
+        }
+        cout<<round[i]<<endl;
+        continue;
+    }
+}
+```
+
